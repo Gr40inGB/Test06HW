@@ -60,6 +60,9 @@ class NumbersListComparerServiceTest {
 
 }
 ```
+![img.png](img.png)
+
+
 [NumbersListComparerTest.java](src%2Ftest%2Fjava%2Forg%2Fgr40in%2Fmodel%2FNumbersListComparerTest.java)
 
 ```java
@@ -121,4 +124,3 @@ class NumbersListComparerServiceTest {
 ```
 
 
-![img.png](img.png)

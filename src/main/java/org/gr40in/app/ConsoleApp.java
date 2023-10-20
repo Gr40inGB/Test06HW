@@ -4,6 +4,7 @@ package org.gr40in.app;
 import org.gr40in.app.commands.*;
 import org.gr40in.model.NumbersListComparer;
 import org.gr40in.model.NumbersListComparerService;
+import org.gr40in.model.StringToDoubleParseException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,16 +36,23 @@ public class ConsoleApp implements AppInterface<String> {
         return this.menu;
     }
 
+    private String getValidData(String message) {
+        boolean error = true;
+        String result = "";
+        while (error) {
+            result = getInfo("Please enter first numbers list: ");
+            if (NumbersListComparerService.stringDataIsOk(result)) error = false;
+        }
+        return result;
+    }
 
     public void runComparer() {
-
-        List<Double> list1 = NumbersListComparerService.parseStringDataToNumbersList
-                (getInfo("Please enter fisrt numbers list: "));
-        List<Double> list2 = NumbersListComparerService.parseStringDataToNumbersList
-                (getInfo("Please enter second numbers list: "));
-
-
-
+        String firstListString = getInfo("Please enter first numbers list: ");
+        String secondListString = getInfo("Please enter second numbers list: ");
+        NumbersListComparer numbersListComparer = new NumbersListComparer(
+                NumbersListComparerService.parseStringDataToNumbersList(firstListString),
+                NumbersListComparerService.parseStringDataToNumbersList(secondListString));
+        showInfo(numbersListComparer.getComparerResult());
     }
 
     public void run() {
@@ -75,12 +83,12 @@ public class ConsoleApp implements AppInterface<String> {
 
     @Override
     public void showInfo(String message) {
-
+        System.out.print(message);
     }
 
     @Override
     public void showMenu() {
-        System.out.println("Main menu: ");
+        System.out.println("\nMain menu: ");
         for (int i = 0; i < this.menu.size(); i++) {
             System.out.println("\t" + (i + 1) + ". " + menu.get(i).getName());
         }
@@ -90,6 +98,5 @@ public class ConsoleApp implements AppInterface<String> {
     public String getInfo(String welcome) {
         showInfo(welcome);
         return this.scanner.nextLine();
-
     }
 }
