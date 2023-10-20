@@ -5,5 +5,5 @@ public interface AppInterface<T> {
 
     public void showMenu();
 
-    public T getInfo();
+    public T getInfo(String message);
 }

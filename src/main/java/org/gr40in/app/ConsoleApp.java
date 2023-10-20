@@ -2,6 +2,8 @@ package org.gr40in.app;
 
 
 import org.gr40in.app.commands.*;
+import org.gr40in.model.NumbersListComparer;
+import org.gr40in.model.NumbersListComparerService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +13,12 @@ public class ConsoleApp implements AppInterface<String> {
     private List<Commands> menu;
     private boolean run;
     private Scanner scanner;
+
     public ConsoleApp() {
         this.scanner = new Scanner(System.in);
         this.run = true;
         this.menu = new ArrayList<>();
         menu.add(new CommandListComparerRun(this));
-        menu.add(new CommandShowAll(this));
         menu.add(new CommandExit(this));
     }
 
@@ -36,13 +38,12 @@ public class ConsoleApp implements AppInterface<String> {
 
     public void runComparer() {
 
-        System.out.print("Please enter new Contact\n>>>>> ");
-        String userInput = scanner.nextLine();
+        List<Double> list1 = NumbersListComparerService.parseStringDataToNumbersList
+                (getInfo("Please enter fisrt numbers list: "));
+        List<Double> list2 = NumbersListComparerService.parseStringDataToNumbersList
+                (getInfo("Please enter second numbers list: "));
 
-    }
 
-
-    public void showAll() {
 
     }
 
@@ -86,7 +87,9 @@ public class ConsoleApp implements AppInterface<String> {
     }
 
     @Override
-    public String getInfo() {
-        return null;
+    public String getInfo(String welcome) {
+        showInfo(welcome);
+        return this.scanner.nextLine();
+
     }
 }
