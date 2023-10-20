@@ -46,7 +46,7 @@ public class NumbersListComparer {
         String list1 = this.numbersList1.toString();
         String list2 = this.numbersList2.toString();
         return "Average value of " +
-                ((this.numbersList1Average == this.numbersList2Average) ? list1 + " and " + list2 + " are equal" :
+                (this.numbersList1Average.equals(this.numbersList2Average) ? list1 + " and " + list2 + " are equal" :
                         this.numbersList1Average > this.numbersList2Average ? list1 : list2 + " are bigger");
     }
 

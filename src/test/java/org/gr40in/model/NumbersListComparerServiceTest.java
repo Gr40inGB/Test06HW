@@ -9,18 +9,19 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class NumbersListComparerServiceTest {
+    String validData1 = "12 14 414 124 345 14";
+    String validData2 = "12 14 41.4 124 345 143 1234 142345";
+    String notValidData1 = "112342 14 414 1241.. 345 143 1234 14234.5";
+    String notValidData2 = "12 14 414 124 3g45 143 1234 14234.5";
 
     @Test
     void parseStringDataToNumbersList() {
-
+        assertEquals(NumbersListComparerService.parseStringDataToNumbersList(validData1),
+                new ArrayList<>(Arrays.asList(12.0, 14.0, 414.0, 124.0, 345.0, 14.0)));
     }
 
     @Test
     void stringDataIsOk() {
-        String validData1 = "12 14 414 124 345 14";
-        String validData2 = "12 14 41.4 124 345 143 1234 142345";
-        String notValidData1 = "112342 14 414 1241.. 345 143 1234 14234.5";
-        String notValidData2 = "12 14 414 124 3g45 143 1234 14234.5";
         assertTrue(NumbersListComparerService.stringDataIsOk(validData1));
         assertTrue(NumbersListComparerService.stringDataIsOk(validData2));
         assertFalse(NumbersListComparerService.stringDataIsOk(notValidData1));
@@ -52,4 +53,5 @@ class NumbersListComparerServiceTest {
         assertEquals(NumbersListComparerService.getAverage(list4), list4AvgCorrect);
         assertNotEquals(NumbersListComparerService.getAverage(list4), list4AvgNotCorrect);
     }
+
 }
