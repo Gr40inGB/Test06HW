@@ -2,11 +2,13 @@ package org.gr40in.app;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 
 import java.io.*;
 
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 class ConsoleAppTest {
@@ -42,6 +44,9 @@ class ConsoleAppTest {
 
     @Test
     void showInfo() {
+
+
+
     }
 
     @Test
